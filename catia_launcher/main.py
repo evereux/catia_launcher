@@ -3,6 +3,7 @@
 import os
 
 from PySide2.QtWidgets import QMainWindow, QMessageBox
+from PySide2.QtGui import QIcon
 
 from .read_shortcuts import populate_shortcuts, load_json
 from .gui.catia_launcher_gui import Ui_MainWindow
@@ -13,6 +14,8 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("CATIA Launcher")
+        self.setWindowIcon(QIcon('images/icon.bmp'))
 
         self.json_data = load_json()
         self.shortcut_links = populate_shortcuts(self.json_data)

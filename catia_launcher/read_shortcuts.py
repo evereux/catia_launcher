@@ -129,11 +129,11 @@ def load_json():
 
 def populate_shortcuts(json_data):
     shortcut_informations = list()
-    for root, dirs, files in os.walk(json_data['shortcuts_path']):
-        for file in files:
-            if os.path.splitext(file)[1] == ".lnk":
-                catia_shortcut = CATIAShortCut(os.path.join(root, file))
-                shortcut_informations.append(catia_shortcut)
+    shortcut_path = json_data['shortcuts_path']
+    for file in os.listdir(shortcut_path):
+        if os.path.splitext(file)[1] == ".lnk":
+            catia_shortcut = CATIAShortCut(os.path.join(shortcut_path, file))
+            shortcut_informations.append(catia_shortcut)
 
     return shortcut_informations
 
