@@ -110,7 +110,7 @@ class Ui_MainWindow(object):
         self.checkbox_temp_files.setText(QtWidgets.QApplication.translate("MainWindow", "Open Temp Files", None, -1))
         self.btn_open_folders.setText(QtWidgets.QApplication.translate("MainWindow", "Open Folder(s)", None, -1))
         self.btn_exit.setText(QtWidgets.QApplication.translate("MainWindow", "Quit", None, -1))
-        self.menuAbout.setTitle(QtWidgets.QApplication.translate("MainWindow", "About", None, -1))
+        self.menuAbout.setTitle(QtWidgets.QApplication.translate("MainWindow", "Help", None, -1))
         self.actionAbout.setText(QtWidgets.QApplication.translate("MainWindow", "About", None, -1))
         self.actionExit.setText(QtWidgets.QApplication.translate("MainWindow", "Exit", None, -1))
 

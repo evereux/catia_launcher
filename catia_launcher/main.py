@@ -33,6 +33,8 @@ class MainWindow(QMainWindow):
         # open folders
         self.ui.btn_open_folders.clicked.connect(self.btn_open_folders_pressed)
 
+        self.ui.actionAbout.triggered.connect(self.show_about)
+
     # starting catia
     def btn_start_catia_pressed(self):
         if self.catia_selection.currentIndex():
@@ -52,6 +54,14 @@ class MainWindow(QMainWindow):
                 os.startfile(catia_env.cat_user_setting_path)
         else:
             self.warning_message_box('Please select CATIA version.')
+
+    def show_about(self):
+        text = """<h1>CATIA Application Launcher</h1>
+               <p>
+            Created by Paul Bourne <br>.
+            Source Code: <a href="https://github.com/evereux/catia_launcher">GitHub</a>
+        </p>"""
+        box = QMessageBox.information(self, "Information", text)
 
     def btn_exit_pressed(self):
         self.close()
