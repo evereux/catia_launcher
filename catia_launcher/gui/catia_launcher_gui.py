@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'catia_launcher_gui.ui',
 # licensing of 'catia_launcher_gui.ui' applies.
 #
-# Created: Sun Mar 10 17:04:13 2019
+# Created: Tue Mar 12 19:18:26 2019
 #      by: pyside2-uic  running on PySide2 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,6 +25,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
+        font.setPointSize(12)
         font.setWeight(75)
         font.setBold(True)
         self.label.setFont(font)
@@ -82,8 +83,8 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 243, 22))
         self.menubar.setObjectName("menubar")
-        self.menuAbout = QtWidgets.QMenu(self.menubar)
-        self.menuAbout.setObjectName("menuAbout")
+        self.menuHelp = QtWidgets.QMenu(self.menubar)
+        self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setStatusTip("")
@@ -93,24 +94,24 @@ class Ui_MainWindow(object):
         self.actionAbout.setObjectName("actionAbout")
         self.actionExit = QtWidgets.QAction(MainWindow)
         self.actionExit.setObjectName("actionExit")
-        self.menuAbout.addAction(self.actionAbout)
-        self.menubar.addAction(self.menuAbout.menuAction())
+        self.menuHelp.addAction(self.actionAbout)
+        self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "MainWindow", None, -1))
+        MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "CATIA V5 Launcher", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("MainWindow", "CATIA V5 Launcher", None, -1))
         self.combo_select_catia.setItemText(0, QtWidgets.QApplication.translate("MainWindow", "Select CATIA V5 Version", None, -1))
         self.btn_start_catia.setText(QtWidgets.QApplication.translate("MainWindow", "Start CATIA", None, -1))
-        self.checkbox_user_files.setToolTip(QtWidgets.QApplication.translate("MainWindow", "Delete the users CATIA user specific settings folder.", None, -1))
+        self.checkbox_user_files.setToolTip(QtWidgets.QApplication.translate("MainWindow", "<html><head/><body><p>Opens folder containing the user specific CATIA settings folder.<br/><br/>Deletion of all the files in this folder resets CATIA to it\'s default configuration.</p></body></html>", None, -1))
         self.checkbox_user_files.setText(QtWidgets.QApplication.translate("MainWindow", "Open User Files", None, -1))
-        self.checkbox_temp_files.setToolTip(QtWidgets.QApplication.translate("MainWindow", "Delete all files in the users temporary folder.", None, -1))
+        self.checkbox_temp_files.setToolTip(QtWidgets.QApplication.translate("MainWindow", "Opens the users CATIA temporary files folder.", None, -1))
         self.checkbox_temp_files.setText(QtWidgets.QApplication.translate("MainWindow", "Open Temp Files", None, -1))
         self.btn_open_folders.setText(QtWidgets.QApplication.translate("MainWindow", "Open Folder(s)", None, -1))
         self.btn_exit.setText(QtWidgets.QApplication.translate("MainWindow", "Quit", None, -1))
-        self.menuAbout.setTitle(QtWidgets.QApplication.translate("MainWindow", "Help", None, -1))
+        self.menuHelp.setTitle(QtWidgets.QApplication.translate("MainWindow", "Help", None, -1))
         self.actionAbout.setText(QtWidgets.QApplication.translate("MainWindow", "About", None, -1))
         self.actionExit.setText(QtWidgets.QApplication.translate("MainWindow", "Exit", None, -1))
 
