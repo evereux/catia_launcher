@@ -6,6 +6,7 @@ import win32com.client
 
 from .json_tools import create_config, json_file
 
+
 class CATIASettings:
 
     def __init__(self, env_file):
@@ -38,9 +39,10 @@ class CATIASettings:
 
     def __repr__(self):
 
-        return 'CATIASettings(\n\tenv_file: {}, \n\tcat_user_setting_path: {}, \n\tcat_temp: {})'.format(self.env_file,
-                                                                                                         self.cat_user_setting_path,
-                                                                                                         self.cat_temp)
+        return ('CATIASettings(\n\tenv_file: {},'
+                '\n\tcat_user_setting_path: {}, \n\tcat_temp: {})').format(self.env_file,
+                                                                           self.cat_user_setting_path,
+                                                                           self.cat_temp)
 
 
 class CATIAShortCut:
@@ -69,13 +71,22 @@ class CATIAShortCut:
         return os.path.isfile(self.target_path)
 
     @property
-    def catia_string(self):
+    def application_string(self):
 
         return os.path.splitext(os.path.basename(self.shortcut_link))[0]
 
     def get_settings(self):
+        """
 
-        return CATIASettings(os.path.join(self.directory_env, self.env))
+        :return: CATIASettings()
+        """
+
+        try:
+            file_name = os.path.join(os.path.join(self.directory_env, self.env))
+        except TypeError:
+            return None
+
+        return CATIASettings(file_name)
 
     def split_arguments(self):
         """
@@ -92,7 +103,7 @@ class CATIAShortCut:
                 self.directory_env = args[item + 1]
                 self.directory_env = self.directory_env.strip('"')
 
-    def start_catia(self):
+    def start_application(self):
         """
         Method to start CATIA V5. If the shortcut link points to a file that does not exist the method will return
         False otherwise True.
@@ -110,8 +121,45 @@ class CATIAShortCut:
         return "CATIAShortCut() \n\ttarget_path: {},\n\t arguments :{}".format(self.target_path, self.arguments)
 
 
-def load_json():
+class WebsiteShortCut:
 
+    def __init__(self, shortcut_link):
+        """
+
+        :param shortcut_link:
+        """
+
+        self.shortcut_link = shortcut_link
+        self.target_path = None
+        self.read_shortcut_file()
+
+    @property
+    def application_string(self):
+
+        return os.path.splitext(os.path.basename(self.shortcut_link))[0]
+
+    def start_application(self):
+        """
+
+        :return:
+        """
+
+        # the webbrowser package is not used at it causes problems with pyinstaller.
+        os.startfile(self.target_path)
+
+    def read_shortcut_file(self):
+
+        with open(self.shortcut_link, mode='rt') as file:
+            for line in file:
+                if line.startswith("URL="):
+                    self.target_path = line.split("=")[1]
+
+    def __repr__(self):
+
+        return "ApplicationShortCut() \n\ttarget_path: {}".format(self.target_path)
+
+
+def load_json():
     if not os.path.isfile(json_file):
         print("There doesn't appear to be a config.json file.")
         create_config()
@@ -127,13 +175,38 @@ def load_json():
     return json_data
 
 
+def get_shortcut(full_path):
+    """
+
+    :param full_path:
+    :return:
+    """
+    shortcut_informations = list()
+    shortcut = None
+    extension = os.path.splitext(full_path)[1]
+    if extension == ".lnk":
+        shortcut = CATIAShortCut(full_path)
+    if extension == ".website":
+        shortcut = WebsiteShortCut(full_path)
+    if hasattr(shortcut, "target_path"):
+        shortcut_informations.append(shortcut)
+
+    return shortcut_informations
+
+
 def populate_shortcuts(json_data):
     shortcut_informations = list()
     shortcut_path = json_data['shortcuts_path']
     for file in os.listdir(shortcut_path):
-        if os.path.splitext(file)[1] == ".lnk":
-            catia_shortcut = CATIAShortCut(os.path.join(shortcut_path, file))
-            shortcut_informations.append(catia_shortcut)
+        full_path = os.path.join(shortcut_path, file)
+        shortcut = None
+        extension = os.path.splitext(full_path)[1]
+        if extension == ".lnk":
+            shortcut = CATIAShortCut(full_path)
+        if extension == ".website":
+            shortcut = WebsiteShortCut(full_path)
+        if hasattr(shortcut, "target_path"):
+            shortcut_informations.append(shortcut)
 
     return shortcut_informations
 

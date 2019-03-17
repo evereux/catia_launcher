@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>243</width>
-    <height>300</height>
+    <height>302</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -63,7 +63,7 @@
        <widget class="QComboBox" name="combo_select_catia">
         <item>
          <property name="text">
-          <string>Select CATIA V5 Version</string>
+          <string>Select Application</string>
          </property>
         </item>
        </widget>
@@ -86,7 +86,10 @@
         <item>
          <widget class="QPushButton" name="btn_start_catia">
           <property name="text">
-           <string>Start CATIA</string>
+           <string>Start</string>
+          </property>
+          <property name="shortcut">
+           <string>Ctrl+S</string>
           </property>
          </widget>
         </item>

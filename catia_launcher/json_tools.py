@@ -5,6 +5,7 @@ import os
 
 json_file = 'config.json'
 
+
 def create_config():
     """
 

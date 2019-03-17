@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'catia_launcher_gui.ui',
 # licensing of 'catia_launcher_gui.ui' applies.
 #
-# Created: Tue Mar 12 19:18:26 2019
+# Created: Sun Mar 17 18:04:14 2019
 #      by: pyside2-uic  running on PySide2 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(243, 300)
+        MainWindow.resize(243, 302)
         MainWindow.setMaximumSize(QtCore.QSize(430, 445))
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet("")
@@ -103,8 +103,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "CATIA V5 Launcher", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("MainWindow", "CATIA V5 Launcher", None, -1))
-        self.combo_select_catia.setItemText(0, QtWidgets.QApplication.translate("MainWindow", "Select CATIA V5 Version", None, -1))
-        self.btn_start_catia.setText(QtWidgets.QApplication.translate("MainWindow", "Start CATIA", None, -1))
+        self.combo_select_catia.setItemText(0, QtWidgets.QApplication.translate("MainWindow", "Select Application", None, -1))
+        self.btn_start_catia.setText(QtWidgets.QApplication.translate("MainWindow", "Start", None, -1))
+        self.btn_start_catia.setShortcut(QtWidgets.QApplication.translate("MainWindow", "Ctrl+S", None, -1))
         self.checkbox_user_files.setToolTip(QtWidgets.QApplication.translate("MainWindow", "<html><head/><body><p>Opens folder containing the user specific CATIA settings folder.<br/><br/>Deletion of all the files in this folder resets CATIA to it\'s default configuration.</p></body></html>", None, -1))
         self.checkbox_user_files.setText(QtWidgets.QApplication.translate("MainWindow", "Open User Files", None, -1))
         self.checkbox_temp_files.setToolTip(QtWidgets.QApplication.translate("MainWindow", "Opens the users CATIA temporary files folder.", None, -1))
